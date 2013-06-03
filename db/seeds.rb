@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# ruby encoding: utf-8
+
+Kanji.delete_all
+
+Dir.foreach('/data/jlpt5') do |file|
+  next if file == '.' or file == '..'
+  # do work on real items
+  contents = File.read('file')
+  Kanji.create!(name: )
+end
