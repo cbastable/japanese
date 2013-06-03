@@ -1,0 +1,59 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.full-width-container {
+	padding-top: 45px;
+	padding-bottom: 0;
+	background-color: #fff;
+}
+
+.container {
+	max-width: 700px;
+	margin: 30px auto 0 auto;
+}
+
+.kanji {
+	//position
+	display: block;
+	text-align: center;
+
+	//font
+	color: #333;
+	font-size: 125px;
+	line-height: 1;
+	font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+	font-weight: 700;
+}
+
+.readings {
+	//position
+	overflow: hidden;
+
+	//font
+	font-size: 52px;
+	color: #333;
+	line-height: 1;
+}
+.onyomi {
+	float: left;
+	margin: 50px 0 0 0;
+}
+.kunyomi {
+	float: right;
+	margin: 50px 0 0 0;
+}
+
+.translation {
+	//position
+	margin: 50px 0 0 0;
+	text-align: center;
+
+	//font
+	color: #333332;
+	line-height: 1.5;
+	font-family: "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
+	font-weight: 400;
+	font-size: 32px;
+}
+
+
