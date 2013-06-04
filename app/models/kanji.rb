@@ -14,5 +14,18 @@
 class Kanji < ActiveRecord::Base
   attr_accessible :english, :kanji, :kunyomi, :onyomi
 
-  
+  has_many :lists, foreign_key: "kanji_id", dependent: :destroy
+  has_many :collections, through: :lists
+
+  def in_collection?(collection)
+  	lists.find_by_collection_id(collection.id)
+  end
+
+  def add_to_collection!(collection)
+  	self.lists.create!(collection_id: collection.id)
+  end
+
+  def remove_from_collection!(collection)
+  	self.lists.find_by_collection_id(collection.id).destroy
+  end
 end

@@ -8,5 +8,6 @@ class CreateKanjis < ActiveRecord::Migration
 
       t.timestamps
     end
+    #add_index :kanjis, :kanji
   end
 end

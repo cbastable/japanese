@@ -1,0 +1,13 @@
+<header id="header"><%=render "static_pages/header.html.erb"%></header>
+
+	<div class="container">
+		<h1>Kanji sets</h1>
+		<div class="collections">
+			<ul class="collection-list">
+				<% @collections.each do |collection| %>
+					<li><%=link_to "#{collection.name}".upcase, collection_set_path(collection.name)%></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+

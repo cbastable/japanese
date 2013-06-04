@@ -2,10 +2,10 @@
 	<h1 class="logo"><%=link_to "Kanji", root_url%></h1>
 	<nav class="left">
 		<ul class="cf">
-			<li><%=link_to "Study", '#'%></li>
+			<li><%=link_to "Study", collections_path%></li>
 			<li><%=link_to "Test", '#'%></li>
 		</ul>
 	</nav>
-	<nav class="right"><%=render 'nav_right.html.erb'%></nav>
+	<nav class="right"><%=render 'static_pages/nav_right.html.erb'%></nav>
 </div>
 <div id="notices"></div>
