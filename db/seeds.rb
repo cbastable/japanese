@@ -6,12 +6,59 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # ruby encoding: utf-8
+require 'rubygems'
+require 'mechanize'
 
-Kanji.delete_all
+Kanji.destroy_all
 
-Dir.foreach('/data/jlpt5') do |file|
-  next if file == '.' or file == '..'
-  # do work on real items
-  contents = File.read('file')
-  Kanji.create!(name: )
-end
+#Dir.glob("db/data/jlpt5/*.txt") do |my_text_file|
+ # puts "working on: #{my_text_file}..."
+  #contents = File.read("#{my_text_file}")
+  #Kanji.create!(kanji: contents)
+  #puts "Successfully created kanji"
+#end
+
+BASE_URL = 'http://jisho.org'
+BASE_DIR = '/kanji/details/'
+
+Dir.glob("db/data/jlpt5/*.txt") do |my_text_file|
+	puts "working on: #{my_text_file}..."
+	contents = File.read("#{my_text_file}")
+
+	agent = Mechanize.new
+	page = agent.get(BASE_URL+BASE_DIR+contents)
+
+	readings = page.parser.xpath('//div[@class="japanese_readings"]').to_html.split('br')
+	kunyomi = ""
+	Nokogiri::HTML(readings[0]).css('a').each do |reading|
+		if kunyomi == ""
+			kunyomi = reading.text
+		else
+			kunyomi = kunyomi + ", " + reading.text
+		end
+	end
+	onyomi = ""
+	Nokogiri::HTML(readings[1]).css('a').each do |reading|
+		if onyomi == ""
+			onyomi = reading.text
+		else
+			onyomi = onyomi + ", " + reading.text
+		end
+	end
+
+	english = page.parser.xpath('//div[@class="english_meanings"]//p').to_html.split('br')
+	translation = ""
+	english.each do |e|
+		if translation == ""
+			translation = Nokogiri::HTML(e).text.gsub(/[^0-9a-z ]/i, '')
+		else
+			translation = translation + ", " + Nokogiri::HTML(e).text.gsub(/[^0-9a-z ]/i, '')
+		end
+		#translation = translation + Nokogiri::HTML(e).text.gsub(/\W+/, '')
+		translation.rstrip!
+	end
+
+	Kanji.create!(kanji: contents, onyomi: onyomi, kunyomi: kunyomi, english: translation)
+	puts "Successfully created kanji"
+
+end #Dir.glob

@@ -6,6 +6,8 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
+gem 'nokogiri'
+gem 'mechanize'
 
 group :development, :test do
   gem 'pg'

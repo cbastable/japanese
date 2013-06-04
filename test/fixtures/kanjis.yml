@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: kanjis
+#
+#  id         :integer          not null, primary key
+#  kanji      :string(255)
+#  onyomi     :string(255)
+#  kunyomi    :string(255)
+#  english    :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kanji: MyString
+  onyomi: MyString
+  kunyomi: MyString
+  english: MyString
+
+two:
+  kanji: MyString
+  onyomi: MyString
+  kunyomi: MyString
+  english: MyString
