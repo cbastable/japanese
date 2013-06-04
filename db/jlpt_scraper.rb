@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'mechanize'
 
-DATA_DIR = "data/jlpt5"
+DATA_DIR = "data/jlpt1"
 Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 
 agent = Mechanize.new
 
-page = agent.get('http://www.tanos.co.uk/jlpt/jlpt5/kanji/')
+page = agent.get('http://www.tanos.co.uk/jlpt/jlpt1/kanji/')
 rows = page.search('table')[1].search('tr')
 
 rows[1..-2].each do |row|

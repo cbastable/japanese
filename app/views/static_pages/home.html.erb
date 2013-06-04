@@ -1,3 +1,4 @@
+<header id="header"><%=render "header.html.erb" %></header>
 <div class="full-width-container">
 	<div class="container">
 		<div class="kanji"><%=@kanji.kanji%></div>
@@ -7,5 +8,6 @@
 		</div>
 		<div class="translation"><%=@kanji.english%></div>
 	</div>
+
 </div>
 <%= link_to "Kanji list", kanjis_path %>

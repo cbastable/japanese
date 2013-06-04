@@ -11,20 +11,13 @@ require 'mechanize'
 
 Kanji.destroy_all
 
-#Dir.glob("db/data/jlpt5/*.txt") do |my_text_file|
- # puts "working on: #{my_text_file}..."
-  #contents = File.read("#{my_text_file}")
-  #Kanji.create!(kanji: contents)
-  #puts "Successfully created kanji"
-#end
-
 BASE_URL = 'http://jisho.org'
 BASE_DIR = '/kanji/details/'
 
-Dir.glob("db/data/jlpt5/*.txt") do |my_text_file|
+Dir.glob("db/data/**/*.txt") do |my_text_file|
 	puts "working on: #{my_text_file}..."
 	contents = File.read("#{my_text_file}")
-
+begin
 	agent = Mechanize.new
 	page = agent.get(BASE_URL+BASE_DIR+contents)
 
@@ -60,5 +53,8 @@ Dir.glob("db/data/jlpt5/*.txt") do |my_text_file|
 
 	Kanji.create!(kanji: contents, onyomi: onyomi, kunyomi: kunyomi, english: translation)
 	puts "Successfully created kanji"
+ ensure
+        sleep 1.0 + rand
+ end  # done: begin
 
 end #Dir.glob
