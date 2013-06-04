@@ -1,0 +1,14 @@
+<ul class="cf">
+	<% if false %>
+		<li><%=render 'user_stats'%></li>
+		<li class="cc-button-group btn-group">
+			<ul class="dropdown-menu">
+				<li><%=link_to "View profile", '#'%></li>
+				<li><%=link_to "Sign out", '#'%></li>
+			</ul>
+		</li>
+	<%else%>
+		<li><%=link_to "Sign in", '#'%></li>
+		<li><%=link_to "Sign up", '#'%></li>
+	<%end%>
+</ul>
