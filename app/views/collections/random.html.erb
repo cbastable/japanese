@@ -1,0 +1,15 @@
+<header id="header"><%=render "static_pages/header.html.erb" %></header>
+<div class="full-width-container">
+	<div class="container">
+		<div class="kanji">
+			<div class="set-number"><%=@current_number%>/<%=@count%></div>
+			<%=link_to "#{@kanji.kanji}", random_collection_path(@collection.name) %>
+		</div>
+		<div class="readings">
+			<div class="onyomi"><%=@kanji.onyomi%></div>
+			<div class="kunyomi"><%=@kanji.kunyomi%></div>
+		</div>
+		<div class="translation"><%=@kanji.english%></div>
+		<div class="return"><%=link_to "Return to: #{@collection.name.upcase}", collection_set_path(@collection.name)%></div>
+	</div>
+</div>

@@ -1,2 +1,17 @@
-<h1>Collections#show</h1>
-<p>Find me in app/views/collections/show.html.erb</p>
+<header id="header"><%=render "static_pages/header.html.erb" %></header>
+<div class="full-width-container">
+	<div class="container">
+		<ul class="collection-links">
+			<li><%=link_to "Ordered list", kanji_in_set_path(@collection.name, @kanji.kanji)%></li>
+			<li><%=link_to "Random kanji", random_collection_path(@collection.name)%></li>
+		</ul>
+		<h3>Kanji set | <%=@collection.name.upcase%> </h2>
+		<ul class="kanji-list">
+		  <% @kanji_list.each do |kanji| %>
+		    <li>
+		      <%= link_to kanji.kanji, kanji_in_set_path(@collection.name, kanji.kanji) %>
+		    </li>
+		  <% end %>
+		</ul>	
+	</div>
+</div>

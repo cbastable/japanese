@@ -12,6 +12,22 @@
 	margin: 30px auto 0 auto;
 }
 
+.set-number {
+	//positioning
+	text-align: left;
+	//font
+	color: #b3b3b1;
+	font-size: 14px;
+	a {
+		color: #b3b3b1;
+	}
+}
+
+.previous {
+	float: left;
+	font-size: 20px;
+}
+
 .kanji {
 	//position
 	display: block;
@@ -23,6 +39,12 @@
 	line-height: 1;
 	font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
 	font-weight: 700;
+}
+
+.next {
+	float: right;
+	font-size: 20px;
+
 }
 
 .readings {
@@ -54,4 +76,8 @@
 	font-family: "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
 	font-weight: 400;
 	font-size: 32px;
+}
+
+.return {
+	margin-top: 50px;
 }

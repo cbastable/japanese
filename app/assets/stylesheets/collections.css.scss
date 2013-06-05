@@ -1,25 +1,55 @@
 // Place all the styles related to the Collections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.collections {
-
-}
-
 .collection-list {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
-.collection-list ul {
-	
-	
-}
-
 .collection-list li {
 	//positioning
 	margin-top: 5px;
-	margin-bottom: 15px;
+	padding-bottom: 10px;
 	//font
 	line-height: 20px;
-	border-top: 1px solid #b3b3b1;
+	border-bottom: 1px solid #b3b3b1;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+ul.collection-links {
+	overflow: hidden;
+	li {
+	//
+	display: block;
+	float: left;
+	text-align: -webkit-match-parent;
+	margin-right: 20px;
+	//font
+	text-decoration: underline;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 50px;
+}
+}
+
+ul.kanji-list {
+	overflow: hidden;
+	li {
+	//
+	display: block;
+	float: left;
+	text-align: -webkit-match-parent;
+	margin-right: 20px;
+	//font
+	font-size: 18px;
+	line-height: 50px;
+
+	}
+}
+
+.container {
+	h3 {
+		font-weight: normal;
+	}
 }

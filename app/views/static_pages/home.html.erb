@@ -1,7 +1,13 @@
 <header id="header"><%=render "header.html.erb" %></header>
 <div class="full-width-container">
 	<div class="container">
-		<div class="kanji"><%=@kanji.kanji%></div>
+		<div class="kanji">
+			<div class="set-number">
+				<%=link_to "#{@collection.name.upcase}", collection_set_path(@collection)%>
+			</div>
+			<div class="character"><%=link_to "#{@kanji.kanji}", kanji_in_set_path(@collection.name, @kanji.kanji)%>
+			</div>
+		</div>
 		<div class="readings">
 			<div class="onyomi"><%=@kanji.onyomi%></div>
 			<div class="kunyomi"><%=@kanji.kunyomi%></div>
@@ -10,4 +16,3 @@
 	</div>
 
 </div>
-<div class="container"><%= link_to "Kanji list", kanjis_path %></div>
