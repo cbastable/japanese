@@ -1,5 +1,6 @@
 Japanese::Application.routes.draw do
-  #resources :kanjis
+  
+  resources :kanjis
   resources :static_pages
   resources :collections do
     member do
@@ -10,9 +11,10 @@ Japanese::Application.routes.draw do
 
 
 	root to: 'static_pages#home'
-	match "/:kanji", to: "kanjis#show", as: :kanji_character
-  match "/collections/:collection/:kanji", to: "kanjis#show", as: :kanji_in_set
+	#match "/:kanji", to: "kanjis#show", as: :kanji_character
 	match "/collections/:collection", to: "collections#show", as: :collection_set
+  match "/collections/:collection/:kanji", to: "kanjis#show", as: :kanji_in_set
+  match "/test/:collection/:kanji", to: "collections#test", as: :collection_test
 
   #match '/library', to: 'users#show'
   #match '/:id',       to: 'stories#show'

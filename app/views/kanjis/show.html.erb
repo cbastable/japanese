@@ -1,11 +1,11 @@
 <div class="full-width-container">
 	<div class="container">
 		<div class="kanji">
-			<div class="set-number"><%=@current_number%>/<%=@count%></div>
+			<div class="set-number"><%=link_to "#{@collection.name.upcase}", collection_set_path(@collection.name)%> | <%=@current_number%>/<%=@count%></div>
 			<div class="character">
-				<div class="previous"><%=link_to "Previous", kanji_in_set_path(@collection.name, @previous_kanji.kanji)%></div>
+				<div class="previous" id="prev"><%=link_to "Previous", kanji_in_set_path(@collection.name, @previous_kanji.kanji)%></div>
 				<%=@kanji.kanji%>
-				<div class="next"><%=link_to "Next", kanji_in_set_path(@collection.name, @next_kanji.kanji)%>
+				<div class="next" id="next"><%=link_to "Next", kanji_in_set_path(@collection.name, @next_kanji.kanji)%>
 			</div>
 			</div>
 		</div>

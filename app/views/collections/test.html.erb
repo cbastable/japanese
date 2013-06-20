@@ -1,0 +1,28 @@
+<div class="full-width-container">
+	<div class="container">
+		<div class="kanji">
+			<div class="set-number"><%=link_to "#{@collection.name.upcase}", collection_set_path(@collection.name)%></div>
+			<div class="character">
+				<%=@kanji.kanji%>
+				<div class="next" id="pass"><%=link_to "Pass", collection_test_path(@collection.name, @next_kanji.kanji) %>
+			</div>
+			</div>
+		</div>
+
+		<div class="readings">
+			<div class="onyomi-answer"></div>
+			<div class="kunyomi-answer"></div>
+		</div>
+		<div class="answers">
+			<form id="target" action="">
+			  Readings: <input type="text" name="readings" id="readings"><span></span><br>
+			  <input type="submit" value="Submit" class="btn btn-medium btn-primary">
+			</form>
+
+	    </div>
+		<div class="onyomi-test"><%=@kanji.onyomi%></div>
+		<div class="kunyomi-test"><%=@kanji.kunyomi%></div>
+		<div class="translation-test"><%=@kanji.english%></div>
+		<div class="return">Return to: <%=link_to "Home", root_path%> | <%= link_to "Study", collections_path%> | <%=link_to "#{@collection.name.upcase}", collection_set_path(@collection.name)%></div>
+	</div>
+</div>

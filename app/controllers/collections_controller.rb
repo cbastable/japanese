@@ -7,10 +7,8 @@ class CollectionsController < ApplicationController
   	@collection = Collection.find_by_name(params[:id])
   	@kanji_list = @collection.kanjis
     @kanji = List.where(collection_id: @collection.id).all.first.kanji
+    @test_kanji = @kanji_list.offset(rand(@kanji_list.count)).first
     #@kanji = @kanji_list.first
-  end
-
-  def kanjis	
   end
 
   def random
@@ -23,5 +21,22 @@ class CollectionsController < ApplicationController
     @current_number = List.where(collection_id: @collection.id, kanji_id: @kanji.id).first.id - @last + 1
   end
 
+  def test
+    @test = Kanji.new
+    @collection = Collection.find_by_name(params[:collection])
+    @kanji_list = @collection.kanjis
+    @kanji = Kanji.find_by_kanji(params[:kanji])
+    @current = List.where(collection_id: @collection.id, kanji_id: @kanji.id).first.id
+    @count = List.where(collection_id: @collection.id).count
+    @next = @current + 1
+    if @next > @count || List.where(id: @next).first.collection_id != @collection.id
+      @next = List.where(collection_id: @collection.id).all.last.id
+    end
+    @next_kanji = Kanji.find_by_id(List.where(id: @next).first.kanji_id)
+  end
+
+
+  def kanjis  
+  end
 
 end

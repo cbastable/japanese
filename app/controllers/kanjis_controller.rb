@@ -30,4 +30,5 @@ class KanjisController < ApplicationController
     @collection = Collection.find_by_name(params[:id])
   	@kanjis = @collection.kanjis
   end
+
 end

@@ -4,7 +4,8 @@
 	<div class="collections">
 		<ul class="collection-list">
 			<% @collections.each do |collection| %>
-				<li><%=link_to "#{collection.name}".upcase, collection_set_path(collection.name)%></li>
+				<li><%=link_to "#{collection.name}".upcase, collection_set_path(collection.name)%>
+				 <span> | <%=link_to "Test", collection_test_path(collection.name, collection.kanjis.first.kanji)%></span></li>
 			<% end %>
 		</ul>
 	</div>
