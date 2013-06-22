@@ -8,6 +8,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
 gem 'nokogiri'
 gem 'mechanize'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'pg'
