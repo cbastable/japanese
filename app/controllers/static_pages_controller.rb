@@ -34,4 +34,8 @@ def show
     @test = Kanji.new
 end
 
+def comingsoon
+    @kanji = Kanji.offset(rand(Kanji.count)).first
+end
+
 end
