@@ -1,6 +1,8 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html,body { height:100%; }
+
 a {
 //positioning
 color: #333;
@@ -22,8 +24,6 @@ text-decoration: none;
 
 }
 
-html,body { height:100%; }
-
 #secondary {
     //padding-bottom: 100%;
 	
@@ -33,6 +33,18 @@ html,body { height:100%; }
 		margin-top: 0;
 		padding-top: 30px;
 		padding-bottom: 30px;
+	}
+}
+
+#tertiary {
+    //padding-bottom: 100%;
+	
+	background: #E33B3B;
+	color: #F0DDDD;
+	.container {
+		margin-top: 0;
+		padding-top: 30px;
+		padding-bottom: 150px;
 	}
 }
 
