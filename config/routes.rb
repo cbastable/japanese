@@ -13,6 +13,7 @@ Japanese::Application.routes.draw do
 	root to: 'static_pages#home'
 	#match "/:kanji", to: "kanjis#show", as: :kanji_character
   match "/comingsoon", to: "static_pages#comingsoon", as: :comingsoon
+  match "/thanksto", to: "static_pages#thanksto", as: :thanksto
 	match "/collections/:collection", to: "collections#show", as: :collection_set
   match "/collections/:collection/:kanji", to: "kanjis#show", as: :kanji_in_set
   match "/test/:collection/:kanji", to: "collections#test", as: :collection_test

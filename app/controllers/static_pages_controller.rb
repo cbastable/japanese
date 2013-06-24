@@ -38,4 +38,7 @@ def comingsoon
     @kanji = Kanji.offset(rand(Kanji.count)).first
 end
 
+def thanksto
+end
+
 end
