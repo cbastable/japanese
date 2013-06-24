@@ -42,7 +42,7 @@ $( document ).ready(function() {
     		}
         }        
         else {
-            $("span").text("No match yet - enter ひらがな for kunyomi, カタカナ for onyomi").show().fadeOut(10000);
+            $("span").text("No match yet - enter ひらがな for kunyomi, カタカナ for onyomi. You may need to TAB then SHIFT-TAB to enter multiple readings (known bug).").show().fadeOut(10000);
         }
     }); //readings.keyup
 
