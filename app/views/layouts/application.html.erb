@@ -8,7 +8,7 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-<%= render 'layouts/google_analytics' %>
+<%= render 'layouts/google_analytics' if Rails.env.production? %>
 <div class="wrapper">
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>
