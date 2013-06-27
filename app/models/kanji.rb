@@ -16,6 +16,7 @@ class Kanji < ActiveRecord::Base
 
   has_many :lists, foreign_key: "kanji_id", dependent: :destroy
   has_many :collections, through: :lists
+  has_many :words
 
   def in_collection?(collection)
   	lists.find_by_collection_id(collection.id)

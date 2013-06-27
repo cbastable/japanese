@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604173123) do
+ActiveRecord::Schema.define(:version => 20130627030148) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
@@ -40,5 +40,17 @@ ActiveRecord::Schema.define(:version => 20130604173123) do
   add_index "lists", ["collection_id"], :name => "index_lists_on_collection_id"
   add_index "lists", ["kanji_id", "collection_id"], :name => "index_lists_on_kanji_id_and_collection_id", :unique => true
   add_index "lists", ["kanji_id"], :name => "index_lists_on_kanji_id"
+
+  create_table "words", :force => true do |t|
+    t.string   "word"
+    t.string   "reading"
+    t.string   "translation"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "words", ["reading"], :name => "index_words_on_reading"
+  add_index "words", ["translation"], :name => "index_words_on_translation"
+  add_index "words", ["word"], :name => "index_words_on_word"
 
 end
