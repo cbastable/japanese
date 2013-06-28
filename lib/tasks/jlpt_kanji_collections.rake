@@ -28,3 +28,15 @@ def make_lists
     end #Dir.glob
   end #Collection.all.each do
 end #make_lists
+
+def make_word_lists
+  WordList.destroy_all
+  Collection.all.each do |collection|
+    Dir.glob("db/data/words/#{collection.name}/*.txt") do |my_text_file|
+      puts "working on: #{collection.name} & #{my_text_file}..."
+      contents = File.read("#{my_text_file}")
+      WordList.create!(kanji_id: kanji.id, word_id: word.id) #NEED THIS TO HAPPEN WITHOUT FIRING ERRORS
+      puts "Added #{contents} to #{collection.name}"
+    end #Dir.glob
+  end #collection.all.each
+end #make_word_lists

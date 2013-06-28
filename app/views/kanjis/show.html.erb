@@ -5,8 +5,7 @@
 			<div class="character">
 				<div class="previous" id="prev"><%=link_to "Previous", kanji_in_set_path(@collection.name, @previous_kanji.kanji)%></div>
 				<%=@kanji.kanji%>
-				<div class="next" id="next"><%=link_to "Next", kanji_in_set_path(@collection.name, @next_kanji.kanji)%>
-			</div>
+				<div class="next" id="next"><%=link_to "Next", kanji_in_set_path(@collection.name, @next_kanji.kanji)%></div>
 			</div>
 		</div>
 		<div class="readings">

@@ -1,6 +1,7 @@
 Japanese::Application.routes.draw do
   
   resources :kanjis
+  resources :words
   resources :static_pages
   resources :collections do
     member do

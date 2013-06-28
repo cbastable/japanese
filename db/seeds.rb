@@ -6,55 +6,41 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # ruby encoding: utf-8
+
 require 'rubygems'
 require 'mechanize'
 
-Kanji.destroy_all
-
 BASE_URL = 'http://jisho.org'
-BASE_DIR = '/kanji/details/'
+BASE_DIR = '/words?jap='
 
-Dir.glob("db/data/**/*.txt") do |my_text_file|
-	puts "working on: #{my_text_file}..."
-	contents = File.read("#{my_text_file}")
-begin
-	agent = Mechanize.new
-	page = agent.get(BASE_URL+BASE_DIR+contents)
+#Dir.glob("/data/jlpt5/*.txt") do |text_file|
+Dir.glob("/Users/conradbastable/Documents/IAP 2013/Apps/japanese/db/data/**/*.txt") do |text_file|
+  	puts "working on: #{text_file}..."
+  	contents = File.read("#{text_file}")
+	begin
+		agent = Mechanize.new
+		page = agent.get(BASE_URL+BASE_DIR+contents)
 
-	readings = page.parser.xpath('//div[@class="japanese_readings"]').to_html.split('br')
-	kunyomi = ""
-	Nokogiri::HTML(readings[0]).css('a').each do |reading|
-		if kunyomi == ""
-			kunyomi = reading.text
-		else
-			kunyomi = kunyomi + ", " + reading.text
-		end
-	end
-	onyomi = ""
-	Nokogiri::HTML(readings[1]).css('a').each do |reading|
-		if onyomi == ""
-			onyomi = reading.text
-		else
-			onyomi = onyomi + ", " + reading.text
-		end
-	end
+		words = page.search(".kanji")
 
-	english = page.parser.xpath('//div[@class="english_meanings"]//p').to_html.split('br')
-	translation = ""
-	english.each do |e|
-		if translation == ""
-			translation = Nokogiri::HTML(e).text.gsub(/[^0-9a-z ]/i, '')
-		else
-			translation = translation + ", " + Nokogiri::HTML(e).text.gsub(/[^0-9a-z ]/i, '')
-		end
-		#translation = translation + Nokogiri::HTML(e).text.gsub(/\W+/, '')
-		translation.rstrip!
-	end
-
-	Kanji.create!(kanji: contents, onyomi: onyomi, kunyomi: kunyomi, english: translation)
-	puts "Successfully created kanji"
- ensure
-        sleep 1.0 + rand
- end  # done: begin
-
+		words.each_with_index do |w, index|
+			if w.text().rstrip.length > 1
+				word = w.text().rstrip.delete "#{contents}"
+				Dir.glob("/Users/conradbastable/Documents/IAP 2013/Apps/japanese/db/data/**/*.txt") do |comps|
+					known_kanji = File.read("#{comps}")
+					word = word.delete "#{known_kanji}"
+				end #Dir
+				size = word.length
+				if size < 1
+					compound_word = w.text().rstrip
+					reading = page.search(".kana_column")[index].text().rstrip
+					english = page.search(".meanings_column")[index].text().rstrip
+					Word.create!(word: compound_word, reading: reading, translation: english)
+					puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
+				end
+			end #if w.text().rstrip.length > 1
+		end #words
+	ensure
+		sleep 1.0 + rand
+	end #begin
 end #Dir.glob

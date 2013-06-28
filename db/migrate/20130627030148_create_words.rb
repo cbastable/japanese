@@ -1,9 +1,9 @@
 class CreateWords < ActiveRecord::Migration
   def change
     create_table :words do |t|
-      t.string :word
-      t.string :reading
-      t.string :translation
+      t.text :word
+      t.text :reading
+      t.text :translation
 
       t.timestamps
     end

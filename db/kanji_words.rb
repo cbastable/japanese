@@ -17,7 +17,7 @@ Dir.glob("data/jlpt5/*.txt") do |text_file|
 
 		words = page.search(".kanji")
 
-		words.each do |w|
+		words.each_with_index do |w, index|
 			if w.text().rstrip.length > 1
 				word = w.text().rstrip.delete "#{contents}"
 				Dir.glob("data/jlpt5/*.txt") do |comps|
@@ -26,13 +26,15 @@ Dir.glob("data/jlpt5/*.txt") do |text_file|
 				end #Dir
 				size = word.length
 				if size < 1
-					puts w.text().rstrip	
+					compound_word = w.text().rstrip
+					reading = page.search(".kana_column")[index].text().rstrip
+					english = page.search(".meanings_column")[index].text().rstrip
+					Word.create!(word: compound_word, reading: reading, translation: english)
+					puts "Successfully created word"
 				end
 			end #if w.text().rstrip.length > 1
 		end #words
 	ensure
 		sleep 1.0 + rand
 	end #begin
-
-
 end #Dir.glob

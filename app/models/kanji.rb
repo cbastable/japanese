@@ -16,7 +16,8 @@ class Kanji < ActiveRecord::Base
 
   has_many :lists, foreign_key: "kanji_id", dependent: :destroy
   has_many :collections, through: :lists
-  has_many :words
+  has_many :word_lists, foreign_key: "kanji_id", dependent: :destroy
+  has_many :words, through: :word_lists #mirror collections, make a third gateway model
 
   def in_collection?(collection)
   	lists.find_by_collection_id(collection.id)

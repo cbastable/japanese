@@ -1,0 +1,17 @@
+<div class="full-width-container">
+	<div class="container">
+		<div class="kanji">
+			<div class="set-number">1 | 160</div>
+			<div class="character">
+				<div class="previous" id="prev"><%=link_to "Previous", "#" %></div>
+				<%=@word.word%>
+				<div class="next" id="next"><%=link_to "Next", "#"%></div>
+			</div>
+		</div>
+		<div class="readings">
+			<div class="onyomi"><%=@word.reading%></div>
+		</div>
+		<div class="translation"><%=@word.translation%></div>
+		<div class="return">Return to: <%=link_to "Home", root_path%> | <%= link_to "Study", "#"%> | <%=link_to "#", "#"%></div>
+	</div>
+</div>

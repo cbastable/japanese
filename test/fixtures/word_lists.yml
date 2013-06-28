@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: word_lists
+#
+#  id         :integer          not null, primary key
+#  kanji_id   :integer
+#  word_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kanji_id: 1
+  word_id: 1
+
+two:
+  kanji_id: 1
+  word_id: 1

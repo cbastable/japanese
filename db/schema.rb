@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627030148) do
+ActiveRecord::Schema.define(:version => 20130628000454) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
@@ -41,10 +41,21 @@ ActiveRecord::Schema.define(:version => 20130627030148) do
   add_index "lists", ["kanji_id", "collection_id"], :name => "index_lists_on_kanji_id_and_collection_id", :unique => true
   add_index "lists", ["kanji_id"], :name => "index_lists_on_kanji_id"
 
+  create_table "word_lists", :force => true do |t|
+    t.integer  "kanji_id"
+    t.integer  "word_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "word_lists", ["kanji_id", "word_id"], :name => "index_word_lists_on_kanji_id_and_word_id", :unique => true
+  add_index "word_lists", ["kanji_id"], :name => "index_word_lists_on_kanji_id"
+  add_index "word_lists", ["word_id"], :name => "index_word_lists_on_word_id"
+
   create_table "words", :force => true do |t|
-    t.string   "word"
-    t.string   "reading"
-    t.string   "translation"
+    t.text     "word"
+    t.text     "reading"
+    t.text     "translation"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
