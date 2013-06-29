@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: word_lists
+# Table name: word_kanjis
 #
 #  id         :integer          not null, primary key
 #  kanji_id   :integer
@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class WordList < ActiveRecord::Base
+class WordKanji < ActiveRecord::Base
   attr_accessible :kanji_id, :word_id
 
   belongs_to :kanji

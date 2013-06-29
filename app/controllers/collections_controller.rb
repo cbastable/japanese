@@ -11,6 +11,13 @@ class CollectionsController < ApplicationController
     #@kanji = @kanji_list.first
   end
 
+  def words
+    @collection = Collection.find_by_name(params[:collection])
+    @word_list = @collection.words
+    @word = WordCollection.where(collection_id: @collection.id).all.first.word
+    @test_word = @word_list.offset(rand(@word_list.count)).first
+  end
+
   def random
     @collection = Collection.find_by_name(params[:id])
     @kanji_list = @collection.kanjis

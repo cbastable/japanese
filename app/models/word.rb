@@ -13,6 +13,9 @@
 class Word < ActiveRecord::Base
   attr_accessible :reading, :translation, :word
 
-  has_many :word_lists, foreign_key: "word_id", dependent: :destroy
-  has_many :kanjis, through: :word_lists
+  has_many :word_collections, foreign_key: "word_id", dependent: :destroy
+  has_many :collections, through: :word_collections
+  has_many :word_kanjis, foreign_key: "word_id", dependent: :destroy
+  has_many :kanjis, through: :word_kanjis
+
 end

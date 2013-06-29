@@ -1,17 +1,17 @@
 <div class="full-width-container">
 	<div class="container">
 		<div class="kanji">
-			<div class="set-number">1 | 160</div>
+			<div class="set-number"><%=link_to "#{@collection.name.upcase}", collection_set_path(@collection.name)%> | <%=@current_number%>/<%=@count%></div>
 			<div class="character">
 				<div class="previous" id="prev"><%=link_to "Previous", "#" %></div>
 				<%=@word.word%>
-				<div class="next" id="next"><%=link_to "Next", "#"%></div>
+				<div class="next" id="next"><%=link_to "Next", word_in_set_path(@collection.name, @next_word.word)%></div>
 			</div>
 		</div>
 		<div class="readings">
-			<div class="onyomi"><%=@word.reading%></div>
+			<div class="word-reading"><%=@word.reading%></div>
 		</div>
 		<div class="translation"><%=@word.translation%></div>
-		<div class="return">Return to: <%=link_to "Home", root_path%> | <%= link_to "Study", "#"%> | <%=link_to "#", "#"%></div>
+		<div class="return">Return to: <%=link_to "Home", root_path%> | <%= link_to "Study compound kanji", words_path%> | <%=link_to "#{@collection.name.upcase}", word_set_path(@collection.name)%></div>
 	</div>
 </div>

@@ -13,4 +13,6 @@ class Collection < ActiveRecord::Base
 
   has_many :lists, foreign_key: "collection_id", dependent: :destroy
   has_many :kanjis, through: :lists
+  has_many :word_collections, foreign_key: "collection_id", dependent: :destroy
+  has_many :words, through: :word_collections
 end
