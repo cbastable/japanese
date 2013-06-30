@@ -25,9 +25,9 @@ class WordsController < ApplicationController
 	    end
  	end
 
-  def index
-  	@collections = Collection.all
-  end
+  	def index
+  		@collections = Collection.all
+  	end
 
     def random
   		@collection = Collection.find_by_name(params[:collection])
@@ -41,5 +41,18 @@ class WordsController < ApplicationController
 	    if @current_number < 1
 	      @current_number = WordCollection.where(collection_id: @collection.id, word_id: @word.id).first.id - @first + 1
 	    end
-  end
+  	end
+
+    def test
+	    @collection = Collection.find_by_name(params[:collection])
+	    @word_list = @collection.words
+	    @word = Word.find_by_word(params[:word])
+	    @count = WordCollection.where(collection_id: @collection.id).count
+	    @current = WordCollection.where(collection_id: @collection.id, word_id: @word.id).first.id
+	    @next = @current + 1
+	    if @next > @count || WordCollection.where(id: @next).first.collection_id != @collection.id
+	      @next = WordCollection.where(collection_id: @collection.id).all.last.id
+	    end
+	    @next_word = Word.find_by_id(WordCollection.where(id: @next).first.word_id)
+  	end
 end

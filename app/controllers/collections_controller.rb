@@ -29,7 +29,7 @@ class CollectionsController < ApplicationController
   end
 
   def test
-    @test = Kanji.new
+    #@test = Kanji.new
     @collection = Collection.find_by_name(params[:collection])
     @kanji_list = @collection.kanjis
     @kanji = Kanji.find_by_kanji(params[:kanji])

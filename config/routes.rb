@@ -17,7 +17,8 @@ Japanese::Application.routes.draw do
   match "/thanksto", to: "static_pages#thanksto", as: :thanksto
 	match "/collections/:collection", to: "collections#show", as: :collection_set
   match "/collections/:collection/:kanji", to: "kanjis#show", as: :kanji_in_set
-  match "/test/:collection/:kanji", to: "collections#test", as: :collection_test
+  match "/test/:collection/kanji/:kanji", to: "collections#test", as: :collection_test
+  match "/test/:collection/words/:word", to: "words#test", as: :word_test
   match "/words/:collection", to: "collections#words", as: :word_set
   match "/words/:collection/:word", to: "words#show", as: :word_in_set
   match "random/words/:collection/", to: "words#random", as: :random_word
