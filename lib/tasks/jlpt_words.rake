@@ -9,7 +9,7 @@ end
 
 def make_word_collections
   WordCollection.destroy_all
-  Word.last(1).each do |w|  ##CHANGE TO Word.all later
+  Word.last(1000).each do |w|  ##CHANGE TO Word.all later
     Collection.all.each do |collection|
       puts "working on: #{collection.name} | #{w.word}..."
       test_word = w.word

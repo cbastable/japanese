@@ -26,6 +26,20 @@ class WordsController < ApplicationController
  	end
 
   def index
-  	@words = Word.first(100)
+  	@collections = Collection.all
+  end
+
+    def random
+  		@collection = Collection.find_by_name(params[:collection])
+	    @word_list = @collection.words
+	    @word = @word_list.offset(rand(@word_list.count)).first
+	    @current = WordCollection.where(collection_id: @collection.id, word_id: @word.id).first.id
+	    @count = WordCollection.where(collection_id: @collection.id).count
+	    @first = WordCollection.where(collection_id: @collection.id).all.first.id #highest number
+	    @last = WordCollection.where(collection_id: @collection.id).all.last.id #lowest number
+	    @current_number = WordCollection.where(collection_id: @collection.id, word_id: @word.id).first.id - @last + 1
+	    if @current_number < 1
+	      @current_number = WordCollection.where(collection_id: @collection.id, word_id: @word.id).first.id - @first + 1
+	    end
   end
 end

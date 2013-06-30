@@ -1,7 +1,7 @@
 Japanese::Application.routes.draw do
   
   resources :kanjis
-  #resources :words
+  resources :words, :only => [:index]
   resources :static_pages
   resources :collections do
     member do
@@ -20,6 +20,7 @@ Japanese::Application.routes.draw do
   match "/test/:collection/:kanji", to: "collections#test", as: :collection_test
   match "/words/:collection", to: "collections#words", as: :word_set
   match "/words/:collection/:word", to: "words#show", as: :word_in_set
+  match "random/words/:collection/", to: "words#random", as: :random_word
 
   #match '/library', to: 'users#show'
   #match '/:id',       to: 'stories#show'

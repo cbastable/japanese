@@ -1,0 +1,15 @@
+<header id="header"><%=render "static_pages/header.html.erb"%></header>
+<div class="container">
+	<h1>Compound kanji word lists</h1>
+	<div class="collections">
+		<ul class="collection-list">
+			<% @collections.each do |collection| %>
+				<li><%=link_to "#{collection.name.upcase} words", word_set_path(collection.name)%>
+				 <span> | Ordered list  <%=link_to "Test", collection_test_path(collection.name, collection.kanjis.first.kanji)%><%=link_to "   Random word", random_word_path(collection.name)%></span>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<% if false %>
+<%=link_to "Ordered list", word_in_set_path(collection.name, collection.words.first)%>
+<% end%>
