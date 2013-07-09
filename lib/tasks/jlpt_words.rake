@@ -6,32 +6,25 @@ namespace :db do
   end
 end
 
-
 def make_word_collections
   WordCollection.destroy_all
-  Word.last(1000).each do |w|  ##CHANGE TO Word.all later
     Collection.all.each do |collection|
-      puts "working on: #{collection.name} | #{w.word}..."
-      test_word = w.word
-      Dir.glob("db/data/#{collection.name}/*.txt") do |my_text_file|
+      data_dir = "#{Dir.pwd}/db/data/#{collection.name}/words"
+      Dir.glob("#{data_dir}/*.txt") do |my_text_file|
+        puts "working on: #{collection.name} & #{my_text_file}..."
         contents = File.read("#{my_text_file}")
-        kanji = Kanji.find_by_kanji(contents)
-        test_word = test_word.delete "#{kanji.kanji}"
-        puts "deleted #{kanji.kanji} if existed in #{w.word}"
+        word = Word.find_by_word(contents)
+        WordCollection.create!(word_id: word.id, collection_id: collection.id)
+        puts "Added #{contents} to #{collection.name}"
       end #Dir.glob
-      size = test_word.length
-      if size < 1
-         WordCollection.create!(word_id: w.id, collection_id: collection.id)
-         puts "WordCollection created successfully: #{collection.name} | #{w.word}"
-      end
     end #collection.all.each
-  end #Word.all.each
 end #make_word_lists
 
 def make_word_kanjis
   WordKanji.destroy_all
   Collection.all.each do |collection|
     collection.words.all.each do |w|
+      puts "wordking on: #{collection.name} | #{w.word}"
       Dir.glob("db/data/#{collection.name}/*.txt") do |my_text_file|
         puts "working on: #{collection.name} & #{my_text_file}..."
         contents = File.read("#{my_text_file}")

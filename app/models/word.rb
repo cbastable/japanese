@@ -18,4 +18,6 @@ class Word < ActiveRecord::Base
   has_many :word_kanjis, foreign_key: "word_id", dependent: :destroy
   has_many :kanjis, through: :word_kanjis
 
+  validates :word, presence: true, uniqueness: true
+
 end

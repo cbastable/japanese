@@ -1,31 +1,38 @@
 class CollectionsController < ApplicationController
   def index
-  	@collections = Collection.all
+  	@collections = Collection.first(4)
+    #JLPT1 kanji list having some weird issues with ordering. Also this code
+    #all runs terribly slowly & non-optimized. Working with 1.2k Kanji at once
+    #breaks things. Can be fixed with some brain power.
   end
 
   def show
   	@collection = Collection.find_by_name(params[:id])
-  	@kanji_list = @collection.kanjis
-    @kanji = List.where(collection_id: @collection.id).all.first.kanji
-    @test_kanji = @kanji_list.offset(rand(@kanji_list.count)).first
+  	@kanji_list = List.where(collection_id: @collection.id)
+    @kanji = @kanji_list.first
+    @test_kanji = @kanji_list.first
     #@kanji = @kanji_list.first
   end
 
   def words
     @collection = Collection.find_by_name(params[:collection])
-    @word_list = @collection.words
+    @word_list = WordCollection.where(collection_id: @collection.id)
     @word = @word_list.first
     @test_word = @word_list.offset(rand(@word_list.count)).first
   end
 
   def random
     @collection = Collection.find_by_name(params[:id])
-    @kanji_list = @collection.kanjis
+    @kanji_list = List.where(collection_id: @collection.id)
     @kanji = @kanji_list.offset(rand(@kanji_list.count)).first
-    @count = List.where(collection_id: @collection.id).count
-    @first = List.where(collection_id: @collection.id).all.first.id #highest number
-    @last = List.where(collection_id: @collection.id).all.last.id #lowest number
-    @current_number = List.where(collection_id: @collection.id, kanji_id: @kanji.id).first.id - @last + 1
+    @first = @kanji_list.first.id #highest number
+    @last = @kanji_list.last.id #lowest number
+    @count = 0
+    @current_number = 0
+    @kanji_list.each do |k|
+      @count = @count + 1
+      @current_number = @count if k.kanji.kanji == @kanji.kanji.kanji
+    end
   end
 
   def test

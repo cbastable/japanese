@@ -15,6 +15,9 @@ class WordCollection < ActiveRecord::Base
   belongs_to :word
   belongs_to :collection
 
+  validates_uniqueness_of :word_id, scope: :collection_id
   validates :word_id, presence: true
   validates :collection_id, presence: true
+  #validates :word_id, presence: true, uniqueness: true <<<=== not this, will need to extend 
+  	#words into all lower collections later
 end

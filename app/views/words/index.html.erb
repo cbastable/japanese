@@ -5,8 +5,12 @@
 		<ul class="collection-list">
 			<% @collections.each do |collection| %>
 				<li><%=link_to "#{collection.name.upcase} words", word_set_path(collection.name)%>
-				 <span> | <%=link_to "Ordered list", word_in_set_path(collection.name, collection.words.first.word)%> | <%=link_to "Random word", random_word_path(collection.name)%> | <%=link_to "Test", word_test_path(@collection.name, @test_word.word)%></span>
+				 <span> | <%=link_to "Ordered list", word_in_set_path(collection.name, collection.words.first.word)%> | <%=link_to "Random word", random_word_path(collection.name)%> | <%=link_to "Test", word_test_path(collection.name, collection.words.first.word)%></span>
 			<% end %>
 		</ul>
 	</div>
 </div>
+
+<% if false %>
+	<span> | <%=link_to "Ordered list", word_in_set_path(collection.name, collection.words.first.word)%> | <%=link_to "Random word", random_word_path(collection.name)%> | <%=link_to "Test", word_test_path(@collection.name, @test_word.word)%></span>
+	<% end %>

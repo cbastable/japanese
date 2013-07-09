@@ -2,15 +2,15 @@
 <div class="full-width-container">
 	<div class="container">
 		<ul class="collection-links">
-			<li><%=link_to "Ordered list", kanji_in_set_path(@collection.name, @kanji.kanji)%></li>
+			<li><%=link_to "Ordered list", kanji_in_set_path(@collection.name, @kanji.kanji.kanji)%></li>
 			<li><%=link_to "Random kanji", random_collection_path(@collection.name)%></li>
-			<li><%=link_to "Test", collection_test_path(@collection.name, @test_kanji.kanji)%></li>
+			<li><%=link_to "Test", collection_test_path(@collection.name, @test_kanji.kanji.kanji)%></li>
 		</ul>
 		<h3>Kanji set: <%=@collection.name.upcase%> </h2>
 		<ul class="kanji-list">
 		  <% @kanji_list.each do |kanji| %>
 		    <li>
-		      <%= link_to kanji.kanji, kanji_in_set_path(@collection.name, kanji.kanji) %>
+		      <%= link_to kanji.kanji.kanji, kanji_in_set_path(@collection.name, kanji.kanji.kanji) %>
 		    </li>
 		  <% end %>
 		</ul>	

@@ -2,15 +2,15 @@
 <div class="full-width-container">
 	<div class="container">
 		<ul class="collection-links">
-			<li><%=link_to "Ordered list", word_in_set_path(@collection.name, @word.word)%></li>
+			<li><%=link_to "Ordered list", word_in_set_path(@collection.name, @word.word.word)%></li>
 			<li><%=link_to "Random word", random_word_path(@collection.name)%></li>
-			<li><%=link_to "Test", word_test_path(@collection.name, @test_word.word)%></li>
+			<li><%=link_to "Test", word_test_path(@collection.name, @word.word.word)%></li>
 		</ul>
 		<h3>Word set: <%=@collection.name.upcase%> </h2>
 		<ul class="kanji-list">
 		  <% @word_list.each do |w| %>
 		    <li>
-		      <%= link_to w.word, word_in_set_path(@collection.name, w.word) %>
+		      <%= link_to w.word.word, word_in_set_path(@collection.name, w.word.word) %>
 		    </li>
 		  <% end %>
 		</ul>	
