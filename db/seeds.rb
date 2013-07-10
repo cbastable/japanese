@@ -18,25 +18,17 @@ Collection.all.each do |collection|
 	Dir.glob("#{data_dir}/*.txt") do |text_file|
 	  	puts "working on: #{text_file}..."
 	  	contents = File.read("#{text_file}")
-	  	counter = 0 #counter to prevent double entries from jisho
-	  	while counter < 1
-			begin
-				agent = Mechanize.new
-				page = agent.get(BASE_URL+BASE_DIR+contents)
-				words = page.search(".kanji")
-				words.each_with_index do |w, index|
-					if w.text().rstrip.length > 1
-						compound_word = w.text().rstrip
-						reading = page.search(".kana_column")[index].text().rstrip
-						english = page.search(".meanings_column")[index].text().rstrip
-						Word.create!(word: compound_word, reading: reading, translation: english)
-						puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
-						counter = counter + 1
-					end #if w.text().rstrip.length > 1
-				end #words
-			ensure
-				sleep 1.0 + rand
-			end #begin
-		end #while
+		begin
+			agent = Mechanize.new
+			page = agent.get(BASE_URL+BASE_DIR+contents)
+			words = page.search(".kanji")
+			compound_word = words[0].text().rstrip
+			reading = page.search(".kana_column")[0].text().rstrip
+			english = page.search(".meanings_column")[0].text().rstrip
+			Word.create!(word: compound_word, reading: reading, translation: english)
+			puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
+		ensure
+			sleep 1.0 + rand
+		end #begin
 	end #Dir.glob
 end #Collection.all
