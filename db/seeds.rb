@@ -13,34 +13,26 @@ require 'mechanize'
 BASE_URL = 'http://jisho.org'
 BASE_DIR = '/words?jap='
 
-#Dir.glob("/data/jlpt5/*.txt") do |text_file|
-Dir.glob("/Users/conradbastable/Documents/IAP 2013/Apps/japanese/db/data/**/*.txt") do |text_file|
-  	puts "working on: #{text_file}..."
-  	contents = File.read("#{text_file}")
-	begin
-		agent = Mechanize.new
-		page = agent.get(BASE_URL+BASE_DIR+contents)
-
-		words = page.search(".kanji")
-
-		words.each_with_index do |w, index|
-			if w.text().rstrip.length > 1
-				word = w.text().rstrip.delete "#{contents}"
-				Dir.glob("/Users/conradbastable/Documents/IAP 2013/Apps/japanese/db/data/**/*.txt") do |comps|
-					known_kanji = File.read("#{comps}")
-					word = word.delete "#{known_kanji}"
-				end #Dir
-				size = word.length
-				if size < 1
+Collection.all.each do |collection|
+    data_dir = "#{Dir.pwd}/db/data/#{collection.name}/words"
+	Dir.glob("#{data_dir}/*.txt") do |text_file|
+	  	puts "working on: #{text_file}..."
+	  	contents = File.read("#{text_file}")
+		begin
+			agent = Mechanize.new
+			page = agent.get(BASE_URL+BASE_DIR+contents)
+			words = page.search(".kanji")
+			words.each_with_index do |w, index|
+				if w.text().rstrip.length > 1
 					compound_word = w.text().rstrip
 					reading = page.search(".kana_column")[index].text().rstrip
 					english = page.search(".meanings_column")[index].text().rstrip
 					Word.create!(word: compound_word, reading: reading, translation: english)
 					puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
-				end
-			end #if w.text().rstrip.length > 1
-		end #words
-	ensure
-		sleep 1.0 + rand
-	end #begin
-end #Dir.glob
+				end #if w.text().rstrip.length > 1
+			end #words
+		ensure
+			sleep 1.0 + rand
+		end #begin
+	end #Dir.glob
+end #Collection.all

@@ -1,8 +1,0 @@
-<h1>All kanji</h1>
-<ul class="kanji-list">
-  <% @kanjis.each do |kanji| %>
-    <li>
-      <%= link_to kanji.kanji, kanji_character_path(kanji.kanji) %>
-    </li>
-  <% end %>
-</ul>
