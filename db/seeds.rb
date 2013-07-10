@@ -12,7 +12,7 @@ require 'mechanize'
 
 BASE_URL = 'http://jisho.org'
 BASE_DIR = '/words?jap='
-
+Word.destroy_all
 Collection.all.each do |collection|
     data_dir = "#{Dir.pwd}/db/data/#{collection.name}/words"
 	Dir.glob("#{data_dir}/*.txt") do |text_file|
