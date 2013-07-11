@@ -12,7 +12,7 @@ require 'mechanize'
 
 BASE_URL = 'http://jisho.org'
 BASE_DIR = '/words?jap='
-Word.destroy_all
+#Word.destroy_all
 Collection.all.each do |collection|
     data_dir = "#{Dir.pwd}/db/data/#{collection.name}/words"
 	Dir.glob("#{data_dir}/*.txt") do |text_file|
@@ -22,11 +22,19 @@ Collection.all.each do |collection|
 			agent = Mechanize.new
 			page = agent.get(BASE_URL+BASE_DIR+contents)
 			words = page.search(".kanji")
-			compound_word = words[0].text().rstrip
-			reading = page.search(".kana_column")[0].text().rstrip
-			english = page.search(".meanings_column")[0].text().rstrip
-			Word.create!(word: compound_word, reading: reading, translation: english)
-			puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
+			words.each_with_index do |w, index|
+				if w.text().rstrip.length > 1
+					word = w.text().rstrip.delete "#{contents}"
+					size = word.length
+					if size < 1 && Word.find_by_word(w.text().rstrip).nil?
+						compound_word = w.text().rstrip
+						reading = page.search(".kana_column")[index].text().rstrip
+						english = page.search(".meanings_column")[index].text().rstrip
+						Word.create!(word: compound_word, reading: reading, translation: english)
+						puts "Successfully created word: #{compound_word} | #{reading} | #{english}"
+					end
+				end #if w.text().rstrip.length > 1
+			end #words
 		ensure
 			sleep 1.0 + rand
 		end #begin
