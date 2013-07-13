@@ -1,3 +1,18 @@
 == Kanjimasu
 
 Learn and test yourself on Kanji from the Japanese Language Proficiency Test. I built this as a quick weekend project to motivate myself back into Japanese proficiency by targeting my weakest area. I'd also never written a practical web scraper before, so I had to fix that. Work in progress.
+
+Scrapers & directors are not all up to date in the most recent repo.
+
+Each kanji is stored in a postgresql database and associated through "belongs_to" to the appropriate JLPT testing level. Compound words are created not by taking another list from somewhere else, but by combining all possible kanji already in the database (JLPT5-JLPT1) and checking to see if a valid word combination exists. If so, it's created, added to the database, and the kanji inside it are associated through another "belongs_to" relationship.
+
+Kanji belong to their JLPT sets as well as every possible word containing that kanji.
+
+[As of 7/2013, those relationships aren't being exploited 100%. The structuring of the relationships will unlock some pretty powerful study tools for me though, allowing quick frame-of-reference changes between a Word, a single Kanji from that Word, and then all possible Words containing that Kanji.
+
+Additionally:
+-Database currently contains all Kanji on my JLPT lists (approx. 2,200)
+-Database currently contains all Words that I scraped containing any combination of those Kanji (approx. 30,000)
+-Only 6,000 of those 30,000 Words have been associated with a JLPT test level. These are the ones containing ONLY Kanji from one test level
+-Displaying "cumulative" Words and Kanji lists will not be a challenge, but has been postponed for a bit while I make sure everything else runs properly
+-Users are COMING SOON tm. No time horizon on a good implementation]
