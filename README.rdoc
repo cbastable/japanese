@@ -11,8 +11,13 @@ Kanji belong to their JLPT sets as well as every possible word containing that k
 [As of 7/2013, those relationships aren't being exploited 100%. The structuring of the relationships will unlock some pretty powerful study tools for me though, allowing quick frame-of-reference changes between a Word, a single Kanji from that Word, and then all possible Words containing that Kanji.
 
 Additionally:
+
 -Database currently contains all Kanji on my JLPT lists (approx. 2,200)
+
 -Database currently contains all Words that I scraped containing any combination of those Kanji (approx. 30,000)
+
 -Only 6,000 of those 30,000 Words have been associated with a JLPT test level. These are the ones containing ONLY Kanji from one test level
+
 -Displaying "cumulative" Words and Kanji lists will not be a challenge, but has been postponed for a bit while I make sure everything else runs properly
+
 -Users are COMING SOON tm. No time horizon on a good implementation]
