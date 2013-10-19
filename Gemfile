@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
-gem 'rails', '3.2.11'
+gem 'rails', '4.0.0'
 
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
@@ -12,6 +12,12 @@ gem 'jquery-rails', '2.0.2'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'newrelic_rpm'
+gem 'protected_attributes'
+
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier', '1.2.3'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'pg'
@@ -19,15 +25,6 @@ end
 
 group :development do
   gem 'annotate', '2.5.0'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '3.2.5'
-  gem 'coffee-rails', '3.2.2'
-  gem 'uglifier', '1.2.3'
-  gem 'bootstrap-sass', '2.1'
 end
 
 group :test do
@@ -40,4 +37,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
