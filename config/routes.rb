@@ -1,5 +1,6 @@
 Japanese::Application.routes.draw do
   
+  devise_for :users
   resources :kanjis, only: [:show]
   resources :words, :only => [:index]
   resources :static_pages
