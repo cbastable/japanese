@@ -19,6 +19,9 @@ gem 'coffee-rails'
 gem 'uglifier', '1.2.3'
 gem 'bootstrap-sass'
 
+#Gem Devise for authentication system
+gem 'devise'
+
 group :development, :test do
   gem 'pg'
 end
