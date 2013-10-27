@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: custom_lists
+#
+#  id                   :integer          not null, primary key
+#  kanji_id             :integer
+#  custom_collection_id :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kanji_id: 1
+  custom_collection_id: 1
+
+two:
+  kanji_id: 1
+  custom_collection_id: 1
