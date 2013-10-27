@@ -1,15 +1,10 @@
 <ul class="cf">
-	<% if false %>
-		<li><%=render 'user_stats'%></li>
-		<li class="cc-button-group btn-group">
-			<ul class="dropdown-menu">
+	<% if user_signed_in? %>
 				<li><%=link_to "View profile", '#'%></li>
-				<li><%=link_to "Sign out", '#'%></li>
-			</ul>
-		</li>
+				<li><%=link_to "Sign out", destroy_user_session_path, method: :delete%></li>
 	<%else%>
-		<li><%=link_to "Sign in", comingsoon_path %></li>
-		<li><%=link_to "Sign up", comingsoon_path %></li>
+		<li><%=link_to "Sign in", new_user_session_path %></li>
+		<li><%=link_to "Sign up", new_user_registration_path %></li>
 		<li><%=link_to "Thanks to", thanksto_path %></li>
 	<%end%>
 </ul>

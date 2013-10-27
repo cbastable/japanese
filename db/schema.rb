@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131020234331) do
+ActiveRecord::Schema.define(version: 20131027201737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 20131020234331) do
   end
 
   add_index "collections", ["name"], name: "index_collections_on_name", using: :btree
+
+  create_table "custom_collections", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "custom_collections", ["name"], name: "index_custom_collections_on_name", using: :btree
+
+  create_table "custom_lists", force: true do |t|
+    t.integer  "kanji_id"
+    t.integer  "custom_collection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "custom_lists", ["custom_collection_id"], name: "index_custom_lists_on_custom_collection_id", using: :btree
+  add_index "custom_lists", ["kanji_id", "custom_collection_id"], name: "index_custom_lists_on_kanji_id_and_custom_collection_id", unique: true, using: :btree
+  add_index "custom_lists", ["kanji_id"], name: "index_custom_lists_on_kanji_id", using: :btree
 
   create_table "kanjis", force: true do |t|
     t.string   "kanji"
