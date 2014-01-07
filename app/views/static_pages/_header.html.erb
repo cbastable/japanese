@@ -2,8 +2,9 @@
 	<h1 class="logo"><%=link_to "Kanjimasu", root_url%></h1>
 	<nav class="left">
 		<ul class="cf">
-			<li><%=link_to "Learn JLPT Kanji", collections_path%></li>
-			<li><%=link_to "JLPT Compound Kanji Words", words_path%></li>
+			<li><%=link_to "Learn JLPT kanji", collections_path%></li>
+			<li><%=link_to "JLPT compound kanji words", words_path%></li>
+			<% if user_signed_in? %><li><%= link_to "My lists", '#'%></li> <% end %>
 		</ul>
 	</nav>
 	<nav class="right"><%=render 'static_pages/nav_right.html.erb'%></nav>
