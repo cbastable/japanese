@@ -1,0 +1,5 @@
+<div class="container">
+	<h1 class="post-title"><%= link_to "#{post.title}", show_post_path(post.permalink) %></h1>
+	<h3 class="post-created-at"><%= post.created_at.strftime("%d %b. %Y")%></h3>
+	<p class="post-body"><%=  post.content.gsub(/\n/, '</p><p class="post-body">').html_safe %></p>
+</div>

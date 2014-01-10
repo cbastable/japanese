@@ -1,0 +1,10 @@
+<header id="header"%><%= render "header.html.erb" %></header>
+<div class="posts">
+<ul>
+	<% @posts.each do |post| %>
+		<li>
+			<%= render "show_in_index.html.erb", post: post %>
+		</li>
+	<% end %>
+</ul>
+</div>

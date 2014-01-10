@@ -10,6 +10,7 @@ Japanese::Application.routes.draw do
     end
     resources :kanjis
   end
+  resources :posts
 
 
   root to: 'static_pages#home'
@@ -24,6 +25,11 @@ Japanese::Application.routes.draw do
   match "/words/:collection", to: "collections#words", as: :word_set, via: [:get]
   match "/words/:collection/:word", to: "words#show", as: :word_in_set, via: [:get]
   match "random/words/:collection/", to: "words#random", as: :random_word, via: [:get]
+
+  get "/blog", to: "posts#index", as: :blog
+  get "/blog/new", to: "posts#new"
+  get "/blog/:permalink", to: "posts#show", as: :show_post
+  get "/blog/:permalink/edit", to: "posts#edit", as: :edit_blog
 
   #match '/library', to: 'users#show'
   #match '/:id',       to: 'stories#show'

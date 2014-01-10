@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027201737) do
+ActiveRecord::Schema.define(version: 20140110022533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,21 @@ ActiveRecord::Schema.define(version: 20131027201737) do
   add_index "lists", ["collection_id"], name: "index_lists_on_collection_id", using: :btree
   add_index "lists", ["kanji_id", "collection_id"], name: "index_lists_on_kanji_id_and_collection_id", unique: true, using: :btree
   add_index "lists", ["kanji_id"], name: "index_lists_on_kanji_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.string   "permalink"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["created_at"], name: "index_posts_on_created_at", using: :btree
+  add_index "posts", ["permalink"], name: "index_posts_on_permalink", using: :btree
+  add_index "posts", ["title", "created_at"], name: "index_posts_on_title_and_created_at", using: :btree
+  add_index "posts", ["title"], name: "index_posts_on_title", using: :btree
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
