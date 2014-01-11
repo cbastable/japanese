@@ -5,6 +5,7 @@
 			<li><%=link_to "Learn JLPT kanji", collections_path%></li>
 			<li><%=link_to "JLPT compound kanji words", words_path%></li>
 			<% if user_signed_in? %><li><%= link_to "My lists", '#'%></li> <% end %>
+			<li><%=link_to "Blog", blog_path%></li>
 		</ul>
 	</nav>
 	<nav class="right"><%=render 'static_pages/nav_right.html.erb'%></nav>
