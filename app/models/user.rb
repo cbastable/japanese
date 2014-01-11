@@ -26,4 +26,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :custom_collections
+  has_many :posts, dependent: :destroy
 end

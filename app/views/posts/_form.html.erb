@@ -1,0 +1,6 @@
+<%= form_for(@post) do |f| %>
+    <%= f.text_field :title, placeholder: "Title" %>
+    <%= f.text_field :permalink, placeholder: "Permalink" %>
+    <%= f.text_area :content, placeholder: "Compose new blog entry..." %>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
