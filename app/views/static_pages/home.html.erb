@@ -9,8 +9,15 @@
 			</div>
 		</div>
 		<div class="readings">
-			<div class="onyomi"><%=@kanji.onyomi%></div>
-			<div class="kunyomi"><%=@kanji.kunyomi%></div>
+			<div class="onyomi"><%=@onyomi%></div>
+			<div class="kunyomi">
+				<% @kunyomi.each_with_index do |kun, i|%>
+				<span class="furigana"><%=@kunyomi_furigana[i]%></span>
+				<span class="okurigana"><%=@kunyomi_okurigana[i] unless @kunyomi_okurigana[i] == ""%>
+				<%="/" if i < @kunyomi.count - 1 %>
+				</span>
+				<% end %>
+			</div>
 		</div>
 		<div class="translation"><%=@kanji.english%></div>
 	</div>
