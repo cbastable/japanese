@@ -34,6 +34,18 @@ class CollectionsController < ApplicationController
     #@test = Kanji.new
     @collection = Collection.find_by_name(params[:collection])
     @kanji = Kanji.find_by_kanji(params[:kanji])
+    @onyomi = @kanji.onyomi
+    @kunyomi = @kanji.kunyomi.split(",")
+    @kunyomi_furigana = []
+    @kunyomi_okurigana = []
+    @kunyomi.each do |kun|
+      @kunyomi_furigana << kun.strip.split(".").first
+      if @kunyomi_furigana.last == kun.strip.split(".").last
+        @kunyomi_okurigana << ""
+      else
+        @kunyomi_okurigana << kun.strip.split(".").last 
+      end
+    end
     @kanji_list = List.where(collection_id: @collection.id).order("id DESC")
     @current = @kanji_list.find_by_kanji_id(@kanji.id).id
     @count = @kanji_list.count

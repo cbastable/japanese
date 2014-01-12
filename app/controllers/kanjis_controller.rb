@@ -6,7 +6,7 @@ class KanjisController < ApplicationController
     @kunyomi = @kanji.kunyomi.split(",")
     @kunyomi_furigana = []
     @kunyomi_okurigana = []
-    @kanji.kunyomi.split(",").each do |kun|
+    @kunyomi.each do |kun|
       @kunyomi_furigana << kun.strip.split(".").first
       if @kunyomi_furigana.last == kun.strip.split(".").last
         @kunyomi_okurigana << ""

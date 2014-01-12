@@ -21,14 +21,14 @@ $( document ).ready(function() {
     //alert(value);
     $("#readings").focus();
     var onyomi = $("div.onyomi-test").text().split(", ");
-    var kunyomi = $("div.kunyomi-test").text().split(", ");
+    var kunyomi = $("div.kunyomi-test").text().split("/");
     var kunyomiSplit = kunyomi.join(".").split("."); //fix
 
 
     $("#readings").keyup(function() {
     	var input = $(this).val();
     	var onyomiOutput = $("div.onyomi-answer").text().split(", ");
-    	var kunyomiOutput = $("div.kunyomi-answer").text().split(", ");
+    	var kunyomiOutput = $("div.kunyomi-answer").text().split("/");
     	if ($.inArray(input, onyomi) >= 0) {
     		if ($.inArray(input, onyomiOutput) < 0) {
     		$("div.onyomi-answer").append(input + ", ")
