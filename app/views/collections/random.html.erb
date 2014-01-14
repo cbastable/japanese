@@ -3,13 +3,20 @@
 	<div class="container">
 		<div class="kanji">
 			<div class="set-number"><%=@current_number%>/<%=@count%></div>
-			<%=link_to "#{@kanji.kanji.kanji}", random_collection_path(@collection.name) %>
+			<%=link_to "#{@kanji.kanji}", random_collection_path(@collection.name) %>
 		</div>
 		<div class="readings">
-			<div class="onyomi"><%=@kanji.kanji.onyomi%></div>
-			<div class="kunyomi"><%=@kanji.kanji.kunyomi%></div>
+			<div class="onyomi"><%=@kanji.onyomi%></div>
+			<div class="kunyomi">
+				<% @kunyomi.each_with_index do |kun, i|%>
+				<span class="furigana"><%=@kunyomi_furigana[i]%></span>
+				<span class="okurigana"><%=@kunyomi_okurigana[i] unless @kunyomi_okurigana[i] == ""%>
+				<%="/" if i < @kunyomi.count - 1 %>
+				</span>
+				<% end %>
+			</div>
 		</div>
-		<div class="translation"><%=@kanji.kanji.english%></div>
+		<div class="translation"><%=@kanji.english%></div>
 		<div class="return">Return to: <%=link_to "Home", root_path%> | <%= link_to "Study", collections_path%> | <%=link_to "#{@collection.name.upcase}", collection_set_path(@collection.name)%></div>
 	</div>
 </div>

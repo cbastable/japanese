@@ -25,8 +25,21 @@ class CollectionsController < ApplicationController
     @collection = Collection.find_by_name(params[:id])
     @kanji_list = List.where(collection_id: @collection.id).order("id DESC")
     @count = @kanji_list.count
-    @kanji = @kanji_list[(rand(@count))]
-    @current = @kanji_list.find_by_kanji_id(@kanji.kanji.id).id
+    @kanji_selector = @kanji_list[(rand(@count))]
+    @kanji = @kanji_selector.kanji
+    @onyomi = @kanji.onyomi
+    @kunyomi = @kanji.kunyomi.split(",")
+    @kunyomi_furigana = []
+    @kunyomi_okurigana = []
+    @kunyomi.each do |kun|
+      @kunyomi_furigana << kun.strip.split(".").first
+      if @kunyomi_furigana.last == kun.strip.split(".").last
+        @kunyomi_okurigana << ""
+      else
+        @kunyomi_okurigana << kun.strip.split(".").last 
+      end
+    end
+    @current = @kanji_list.find_by_kanji_id(@kanji.id).id
     @current_number = @kanji_list.first.id - @current + 1
   end
 
