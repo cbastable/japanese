@@ -1,0 +1,14 @@
+<header id="header"><%=render "static_pages/header.html.erb"%></header>
+<div class="container">
+	<h1>My Kanji sets</h1>
+	<div class="collections">
+		<ul class="collection-list">
+			<% @custom_collections.each do |collection| %>
+				<li><%=link_to "#{collection.name}".upcase, collection_set_path(collection.name)%>
+				 <span> | <%=link_to "Ordered list", kanji_in_custom_set_path(collection.name, collection.kanjis.first.kanji)%> | 
+				 	<%=link_to "Random kanji", random_custom_collection_path(collection.name)%> | 
+				 	<%=link_to "Test", custom_collection_test_path(collection.name, collection.kanjis.first.kanji)%></span></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
