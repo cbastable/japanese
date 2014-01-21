@@ -31,6 +31,8 @@ Japanese::Application.routes.draw do
   get "/blog/:permalink", to: "posts#show", as: :show_post
   get "/blog/:permalink/edit", to: "posts#edit", as: :edit_blog
 
+  get "/user/mykanji", to: "custom_collections#index", as: :my_kanji
+
   #match '/library', to: 'users#show'
   #match '/:id',       to: 'stories#show'
   #match '/:id/edit',  to: 'stories#edit'

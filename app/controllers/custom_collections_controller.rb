@@ -1,6 +1,7 @@
 class CustomCollectionsController < ApplicationController
 	def index
 	  	@custom_collections = current_user.custom_collections.all
+	end
 
 	def show
 		@user = current_user

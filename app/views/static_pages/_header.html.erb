@@ -4,7 +4,7 @@
 		<ul class="cf">
 			<li><%=link_to "Learn JLPT kanji", collections_path%></li>
 			<li><%=link_to "JLPT compound kanji words", words_path%></li>
-			<% if user_signed_in? %><li><%= link_to "My lists", '#'%></li> <% end %>
+			<% if user_signed_in? %><li><%= link_to "My kanji", my_kanji_path%></li> <% end %>
 			<li><%=link_to "Blog", blog_path%></li>
 		</ul>
 	</nav>

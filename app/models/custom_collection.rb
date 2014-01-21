@@ -15,6 +15,6 @@ class CustomCollection < ActiveRecord::Base
 	
 	has_many :custom_lists, foreign_key: "custom_collection_id", dependent: :destroy
 	has_many :kanjis, through: :custom_lists
-	#
-	#
+	
+	
 end
